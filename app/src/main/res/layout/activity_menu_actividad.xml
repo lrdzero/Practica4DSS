@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+
+    style="@style/Background_"
+    android:weightSum="1">
+
+    <ImageView
+
+        android:layout_width="125dp"
+
+    android:layout_height="106dp"
+
+    android:src="@drawable/arenusca"
+
+    android:layout_gravity="center"/>
+
+    <TextView
+
+    style="@style/Texto_introductorio"
+
+    android:text="@string/welcome1"
+
+    android:textAllCaps="false"
+
+    android:fontFamily="sans-serif"
+
+    android:textSize="20dp"
+
+    android:textColor="#003366"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_weight="0.35" />
+
+    <TextView
+
+    style="@style/Texto_introductorio"
+
+    android:text="@string/welcome2"
+
+    android:id="@+id/go"
+
+    android:textAllCaps="false"
+
+    android:fontFamily="sans-serif"
+
+    android:textSize="24dp"
+
+    android:textColor="#003366"/>
+
+    <LinearLayout
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+        android:weightSum="1">
+
+    <Button
+
+    style="@style/Botones_menu"
+
+    android:text="Jugar"
+
+    android:id="@+id/btn_jugar"
+
+    android:background="#bada55"
+
+    android:padding="15dp"
+
+    android:layout_gravity="center"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:textSize="25dp" />
+
+    <Button
+
+    style="@style/Botones_menu"
+
+    android:text="Resultados"
+
+    android:id="@+id/btn_resultados"
+
+    android:background="#7aaee6"
+
+    android:padding="15dp"
+
+    android:layout_gravity="center"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:textSize="25dp" />
+
+    <Button
+
+    style="@style/Botones_menu"
+
+    android:text="Otros juegos"
+
+    android:id="@+id/btn_ajustes"
+
+    android:background="#ff88ae"
+
+    android:padding="15dp"
+
+    android:layout_gravity="center"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:textSize="25dp" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Practica4DSS</string>
+    <string name="title_activity_actividad_principal">ActividadPrincipal</string>
+    <string name="title_activity_menu_actividad">MenuActividad</string>
+
+    <string name="menu_inicial">Menu Inicial</string>
+    <string name="despedida">Enhorabuena has respondido a todas las preguntas!</string>
+    <string name="despedida1">Has respondido correctamente: \n</string>
+    <string name="despedida2">Soy BADASS-YODA de nuevo, muchas gracias por tu atencion. \n </string>
+    <string name="despedida3"> Me has ayudado muchisimo, espero que tu tambien hayas aprendido!\n</string>
+    <string name="play" >Jugar</string>
+    <string name="stats" >Resultados</string>
+    <string name="settings" >Otros juegos</string>
+    <string name="welcome1" >Hola, \n Soy BADASS-YODA y me gustaria retarte a que me demuestres cuanto sabes del agua &#8230; </string>
+    <string name="welcome2">Te atreves?</string>
+    <string name="tip" color="#F62217" textSize="33dp">Entonces, &#8230; esta envenenada el agua del embalse? \n \n No, porque el agua no esta estancada, esta en continua renovacion, le esta entrando y saliendo agua permanentemente .</string>
+    <string name="title_activity_presentacion">Presentacion</string>
+    <string name="title_activity_resultados">Resultados</string>
+    <string name="title_activity_despedida">Despedida</string>
+</resources>
