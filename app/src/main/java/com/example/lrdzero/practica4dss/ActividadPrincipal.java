@@ -141,6 +141,7 @@ public void onClick(View v){
     switch (v.getId()){
         case R.id.opcion_1:
             acierto.start();
+            ot1.setEnabled(false);
             ot2.setEnabled(false);
             ot3.setEnabled(false);
             ot4.setEnabled(false);
@@ -159,6 +160,7 @@ public void onClick(View v){
             break;
         case R.id.opcion_2:
             ot1.setEnabled(false);
+            ot2.setEnabled(false);
             ot3.setEnabled(false);
             ot4.setEnabled(false);
             fallo.start();
@@ -172,6 +174,7 @@ public void onClick(View v){
         case R.id.opcion_3:
             ot1.setEnabled(false);
             ot2.setEnabled(false);
+            ot3.setEnabled(false);
             ot4.setEnabled(false);
             fallo.start();
             try {
@@ -185,6 +188,7 @@ public void onClick(View v){
             ot1.setEnabled(false);
             ot2.setEnabled(false);
             ot3.setEnabled(false);
+            ot4.setEnabled(false);
             fallo.start();
             try {
                 Thread.sleep(2000);
@@ -297,7 +301,7 @@ public void onClick(View v){
     public AlertDialog.Builder crearFin(){
         int value = mUtilidad.getPuntuacion();
         AlertDialog.Builder builder = new AlertDialog.Builder(ActividadPrincipal.this);
-        builder.setMessage("¡¡¡¡FELICIDADES!!!\n Tu puentuación es de: "+value).setTitle("FIN DEL JUEGO").setPositiveButton("Salir al menú principal", new DialogInterface.OnClickListener() {
+        builder.setMessage("¡¡¡¡FELICIDADES!!!\n Tu puentuación es de: "+value).setTitle("FIN DEL JUEGO").setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //restar puntuación y continuar
