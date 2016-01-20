@@ -13,7 +13,7 @@ import android.database.Cursor;
  6 */
 
         public class DBPref extends DBHelper {
-
+    private static volatile DBPref instance;
     public static enum Categoria {
 
         HISTORIA('A'),
@@ -48,6 +48,17 @@ import android.database.Cursor;
         super(contexto);
 
         }
+
+    public static DBPref  getInstance(Context ctx){
+        if(instance == null){
+            synchronized (Utilidad.class){
+                if(instance==null){
+                    instance = new DBPref(ctx);
+                }
+            }
+        }
+        return instance;
+    }
     public void addRegistro(Pregunta pregunta) {
 
         ContentValues valores = new ContentValues();

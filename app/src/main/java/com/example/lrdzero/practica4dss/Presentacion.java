@@ -20,14 +20,14 @@ public class Presentacion extends Activity implements View.OnClickListener {
         btn1 = (Button) findViewById(R.id.pagina);
 
 
-        btn1.setBackgroundResource(R.drawable.arenusca);
+
         btn1.setOnClickListener(this);
     }
 public void onClick(View v){
     switch (v.getId()){
         case R.id.pagina:
             Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
-            myWebLink.setData(Uri.parse("www.google.es"));
+            myWebLink.setData(Uri.parse("https://play.google.com/store/apps/category/GAME"));
             startActivity(myWebLink);
             break;
     }

@@ -3,29 +3,26 @@ package com.example.lrdzero.practica4dss;
 /**
  * Created by lrdzero on 10/01/2016.
  */
+
+//Patron Inmutable
 public class Pregunta {
-    private String pregunta;
-    private String respuesta;
-    private String [] algo;
+    private final String pregunta;
+    private final String respuesta;
+    private final String [] algo;
+    private final String tipo;
 
-    Pregunta(){algo = new String[7];}
-
-    public void setPregunta(String p){pregunta=p;}
-    public void setRespuesta(String r){respuesta=r;}
-    public void setRespuestasErroneas(String g[]){
-        int valor;
-        if(g.length>7){
-            for (int i = 0; i < 7; i++) {
-                algo[i] = g[i];
-            }
+    Pregunta(String pre,String resp,String []conjuto,String tp){
+        this.pregunta=pre;
+        this.respuesta=resp;
+        this.algo= new String[7];
+        for(int i=0;i<conjuto.length;i++){
+            this.algo[i]=conjuto[i];
         }
-        else {
-            for (int i = 0; i < g.length; i++) {
-                algo[i] = g[i];
-            }
-        }
+        this.tipo=tp;
     }
+
     public String getPregunta(){return pregunta;}
     public String getRespuesta(){return respuesta;}
+    public String getTipo(){return tipo;}
     public String[] getRespuestasErroneas(){return algo;}
 }

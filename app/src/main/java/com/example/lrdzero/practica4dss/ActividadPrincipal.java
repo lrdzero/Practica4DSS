@@ -2,10 +2,17 @@ package com.example.lrdzero.practica4dss;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +23,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ActividadPrincipal extends Activity implements View.OnClickListener{
     private Button ot1,ot2,ot3,ot4;
     private Utilidad mUtilidad;
@@ -23,8 +32,8 @@ public class ActividadPrincipal extends Activity implements View.OnClickListener
     private MediaPlayer acierto,fallo;
     private TextView texto;
     private int PREGUNTAS=0;
-    private Pregunta pf;
-    private DBHelper db2;
+    private final ArrayList<Pregunta> preguntas=new ArrayList<Pregunta>();
+    private int index=0;
     private Cursor cuestiones;
     static final int PICK_CONTACT_REQUEST = 1;
     static final int PICK_ELSE_REQUEST=2;
@@ -33,7 +42,7 @@ public class ActividadPrincipal extends Activity implements View.OnClickListener
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_actividad_principal);
 
-            //Recuperar el contexto para introducirle la pregunta
+
 
             mUtilidad = ( Utilidad ) getApplicationContext() ;
             ot1=(Button) findViewById(R.id.opcion_1);
@@ -44,37 +53,79 @@ public class ActividadPrincipal extends Activity implements View.OnClickListener
 
 
             acierto = MediaPlayer.create(this,R.raw.acierto);
-            fallo = MediaPlayer.create(this,R.raw.fallo);
+            fallo = MediaPlayer.create(this, R.raw.fallo);
 
-            db = new DBPref(this);
-
-
-
-
-            cuestiones = this.db.getPreguntas(DBPref.Categoria.TECNOLOGIA, DBPref.Dificultad.FACIL, 4);
-            String [] d =cuestiones.getColumnNames();
-            String [] quest = new String[cuestiones.getCount()];
+            db = DBPref.getInstance(this);
 
 
 
 
-                cuestiones.moveToFirst();
+            cuestiones = this.db.getPreguntas(DBPref.Categoria.TECNOLOGIA, DBPref.Dificultad.FACIL, 5);
+        cuestiones.moveToFirst();
+        for(int i=0;i<cuestiones.getCount();i++,cuestiones.moveToNext()) {
 
-                texto.setText(cuestiones.getString(cuestiones.getColumnIndex("pregunta")));
-                ot1.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_correcta")));
-                ot2.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_1")));
-                ot3.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_2")));
-                ot4.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_3")));
+            Log.e("SDFA", "ASDF");
+            String[] cnt = new String[3];
+            for (int j = 0; j < 3; j++) {
+                cnt[j] = cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_" + (j + 1)));
+            }
+            Pregunta p = new Pregunta(cuestiones.getString(cuestiones.getColumnIndex("pregunta")), cuestiones.getString(cuestiones.getColumnIndex("respuesta_correcta")), cnt, cuestiones.getString(cuestiones.getColumnIndex("pregunta_tipo")));
+            preguntas.add(p);
+        }
+
+                ot1.setText("");
+                ot2.setText("");
+                ot3.setText("");
+                ot4.setText("");
+                ot1.setBackgroundResource(android.R.drawable.btn_default);
+                ot2.setBackgroundResource(android.R.drawable.btn_default);
+                ot3.setBackgroundResource(android.R.drawable.btn_default);
+                ot4.setBackgroundResource(android.R.drawable.btn_default);
+                texto.setBackgroundResource(android.R.drawable.btn_default);
+                if(preguntas.get(index).getTipo().equals("1")){
+                    String imageName = preguntas.get(index).getRespuesta();
+
+                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    texto.setText(preguntas.get(index).getPregunta());
+
+                    ot1.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    imageName = incorrectas[0];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot2.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+                    imageName = incorrectas[1];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot3.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+                    imageName = incorrectas[2];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot4.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
 
 
-            //for(int i=0;i<quest.length;i++)
-              //  Log.e("IDDA",quest[i]);
 
+                }
+                else if (preguntas.get(index).getTipo().equals("2")){
+                    String imageName = preguntas.get(index).getPregunta();
+                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    texto.setBackground(resizeImage(ActividadPrincipal.this,resID,100,100));
+                    texto.setText(" ¿Qué es esto? ");
+                    ot1.setText(preguntas.get(index).getRespuesta());
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    ot2.setText(incorrectas[0]);
+                    ot3.setText(incorrectas[1]);
+                    ot4.setText(incorrectas[2]);
 
+                }
+                else {
 
-
-            //String dte= cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_1"));
-
+                    texto.setText(preguntas.get(index).getPregunta());
+                    ot1.setText(preguntas.get(index).getRespuesta());
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    ot2.setText(incorrectas[0]);
+                    ot3.setText(incorrectas[1]);
+                    ot4.setText(incorrectas[2]);
+                }
 
 
             ot1.setOnClickListener(this);
@@ -90,33 +141,56 @@ public void onClick(View v){
     switch (v.getId()){
         case R.id.opcion_1:
             acierto.start();
-                if(cuestiones.isLast()){
+            ot2.setEnabled(false);
+            ot3.setEnabled(false);
+            ot4.setEnabled(false);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(index==cuestiones.getCount()-1){
                     mUtilidad.setPuntuacion(10);
                     crearFin().show();
-
-
-                }
+            }
                 else {
-                    mUtilidad.setPuntuacion(10);
-                    cuestiones.moveToNext();
-                    texto.setText(cuestiones.getString(cuestiones.getColumnIndex("pregunta")));
-                    ot1.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_correcta")));
-                    ot2.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_1")));
-                    ot3.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_2")));
-                    ot4.setText(cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_3")));
+                  avance().show();
                 }
             break;
         case R.id.opcion_2:
+            ot1.setEnabled(false);
+            ot3.setEnabled(false);
+            ot4.setEnabled(false);
             fallo.start();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             crearVista().show();
             break;
         case R.id.opcion_3:
+            ot1.setEnabled(false);
+            ot2.setEnabled(false);
+            ot4.setEnabled(false);
             fallo.start();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             crearVista().show();
             break;
         case R.id.opcion_4:
-
+            ot1.setEnabled(false);
+            ot2.setEnabled(false);
+            ot3.setEnabled(false);
             fallo.start();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             crearVista().show();
             break;
     }
@@ -131,7 +205,8 @@ public void onClick(View v){
             }
             else{
                 //Reiniciar juego
-                cuestiones.moveToFirst();
+                index=0;
+                mUtilidad.resetearPuntuacion();
             }
         }
 
@@ -143,13 +218,75 @@ public void onClick(View v){
             public void onClick(DialogInterface dialog, int which) {
                 //restar puntuación y continuar
                 mUtilidad.setPuntuacion(-7);
-                cuestiones.moveToNext();
+                index++;
+                ot1.setEnabled(true);
+                ot2.setEnabled(true);
+                ot3.setEnabled(true);
+                ot4.setEnabled(true);
                 dialog.cancel();
             }
         }).setNegativeButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                cuestiones.moveToFirst();
+                index=0;
+                mUtilidad.resetearPuntuacion();
+                ot1.setText("");
+                ot2.setText("");
+                ot3.setText("");
+                ot4.setText("");
+                ot1.setBackgroundResource(android.R.drawable.btn_default);
+                ot2.setBackgroundResource(android.R.drawable.btn_default);
+                ot3.setBackgroundResource(android.R.drawable.btn_default);
+                ot4.setBackgroundResource(android.R.drawable.btn_default);
+                texto.setBackgroundResource(android.R.drawable.btn_default);
+                if(preguntas.get(index).getTipo().equals("1")){
+                    String imageName = preguntas.get(index).getRespuesta();
+
+                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    texto.setText(preguntas.get(index).getPregunta());
+
+                    ot1.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    imageName = incorrectas[0];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot2.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+                    imageName = incorrectas[1];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot3.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+                    imageName = incorrectas[2];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot4.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+
+
+                }
+                else if (preguntas.get(index).getTipo().equals("2")){
+                    String imageName = preguntas.get(index).getPregunta();
+                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    texto.setBackground(resizeImage(ActividadPrincipal.this,resID,100,100));
+                    texto.setText(" ¿Qué es esto? ");
+                    ot1.setText(preguntas.get(index).getRespuesta());
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    ot2.setText(incorrectas[0]);
+                    ot3.setText(incorrectas[1]);
+                    ot4.setText(incorrectas[2]);
+
+                }
+                else {
+
+                    texto.setText(preguntas.get(index).getPregunta());
+                    ot1.setText(preguntas.get(index).getRespuesta());
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    ot2.setText(incorrectas[0]);
+                    ot3.setText(incorrectas[1]);
+                    ot4.setText(incorrectas[2]);
+                }
+                ot1.setEnabled(true);
+                ot2.setEnabled(true);
+                ot3.setEnabled(true);
+                ot4.setEnabled(true);
                 //puntuacion resetea
                 dialog.cancel();
             }
@@ -173,7 +310,7 @@ public void onClick(View v){
         }).setNegativeButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                cuestiones.moveToFirst();
+                index=0;
                 mUtilidad.resetearPuntuacion();
                 //puntuacion resetea
                 dialog.cancel();
@@ -181,5 +318,107 @@ public void onClick(View v){
         });
 
         return builder;
+    }
+    public AlertDialog.Builder avance(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ActividadPrincipal.this);
+        builder.setMessage("Correcto").setTitle("HAS ACERTADO").setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mUtilidad.setPuntuacion(10);
+                index++;
+                ot1.setText("");
+                ot2.setText("");
+                ot3.setText("");
+                ot4.setText("");
+                ot1.setBackgroundResource(android.R.drawable.btn_default);
+                ot2.setBackgroundResource(android.R.drawable.btn_default);
+                ot3.setBackgroundResource(android.R.drawable.btn_default);
+                ot4.setBackgroundResource(android.R.drawable.btn_default);
+                texto.setBackgroundResource(android.R.drawable.btn_default);
+                if(preguntas.get(index).getTipo().equals("1")){
+                    String imageName = preguntas.get(index).getRespuesta();
+
+                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    texto.setText(preguntas.get(index).getPregunta());
+
+                    ot1.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    imageName = incorrectas[0];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot2.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+                    imageName = incorrectas[1];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot3.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+                    imageName = incorrectas[2];
+                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    ot4.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
+
+
+
+                }
+                else if (preguntas.get(index).getTipo().equals("2")){
+                    String imageName = preguntas.get(index).getPregunta();
+                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                    texto.setBackground(resizeImage(ActividadPrincipal.this,resID,100,100));
+                    texto.setText(" ¿Qué es esto? ");
+                    ot1.setText(preguntas.get(index).getRespuesta());
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    ot2.setText(incorrectas[0]);
+                    ot3.setText(incorrectas[1]);
+                    ot4.setText(incorrectas[2]);
+
+                }
+                else {
+
+                    texto.setText(preguntas.get(index).getPregunta());
+                    ot1.setText(preguntas.get(index).getRespuesta());
+                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
+                    ot2.setText(incorrectas[0]);
+                    ot3.setText(incorrectas[1]);
+                    ot4.setText(incorrectas[2]);
+                }
+                ot1.setEnabled(true);
+                ot2.setEnabled(true);
+                ot3.setEnabled(true);
+                ot4.setEnabled(true);
+                dialog.cancel();
+            }
+        });
+
+        return builder;
+    }
+    public static Drawable resizeImage(Context ctx, int resId, int w, int h) {
+
+        // cargamos la imagen de origen
+        Bitmap BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),
+                resId);
+
+        int width = BitmapOrg.getWidth();
+        int height = BitmapOrg.getHeight();
+        int newWidth = w;
+        int newHeight = h;
+
+        // calculamos el escalado de la imagen destino
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+
+        // para poder manipular la imagen
+        // debemos crear una matriz
+
+        Matrix matrix = new Matrix();
+        // resize the Bitmap
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // volvemos a crear la imagen con los nuevos valores
+        Bitmap resizedBitmap = Bitmap.createBitmap(BitmapOrg, 0, 0,
+                width, height, matrix, true);
+
+        // si queremos poder mostrar nuestra imagen tenemos que crear un
+        // objeto drawable y así asignarlo a un botón, imageview...
+        return new BitmapDrawable(resizedBitmap);
+
     }
 }

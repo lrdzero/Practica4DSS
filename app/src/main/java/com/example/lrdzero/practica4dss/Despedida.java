@@ -47,6 +47,11 @@ public void onClick(View v){
     switch(v.getId()){
         case R.id.despe:
             mp.start();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             i= getIntent();
             i.putExtra("RESULTADO","bien");
             setResult(RESULT_OK,i);
