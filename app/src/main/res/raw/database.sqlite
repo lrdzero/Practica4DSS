@@ -31,8 +31,8 @@ total VARCHAR(256)
 
 -- incluir algunas preguntas para depuracion
 INSERT INTO preguntas (pregunta, respuesta_correcta, respuesta_incorrecta_1,respuesta_incorrecta_2, respuesta_incorrecta_3,categoria, pregunta_tipo)VALUES("El agua es esencial para la vida: en que porcentaje forma parte del peso total del cuerpo humano?", "60-80%", "10-30%", "40-50%", "90-110%", 'G', '0');
-INSERT INTO preguntas (pregunta, respuesta_correcta, respuesta_incorrecta_1,respuesta_incorrecta_2, respuesta_incorrecta_3,categoria, pregunta_tipo)VALUES("Pregunta2?", "60-80%", "10-30%", "40-50%", "90-110%", 'G', '0');
-INSERT INTO preguntas (pregunta, respuesta_correcta, respuesta_incorrecta_1,respuesta_incorrecta_2, respuesta_incorrecta_3,categoria, pregunta_tipo)VALUES("Pregunta3?", "60-80%", "10-30%", "40-50%", "90-110%", 'G', '0');
+INSERT INTO preguntas (pregunta, respuesta_correcta, respuesta_incorrecta_1,respuesta_incorrecta_2, respuesta_incorrecta_3,categoria, pregunta_tipo)VALUES("¿Quién es Jorgito lucas?", "Nadie", "El creador de Star Wars", "El heladero de mi pueblo", "El que me pegaba de pequeño", 'G', '0');
+INSERT INTO preguntas (pregunta, respuesta_correcta, respuesta_incorrecta_1,respuesta_incorrecta_2, respuesta_incorrecta_3,categoria, pregunta_tipo)VALUES("Si tienes un cubo con 2 litros de agua, y lo hechas a un cubo con 1'5 litros de capacidad ¿Cuántos cubos tienes?", "2", "1'5 litros y 0'5 litros", "Ninguna es correcta", "1 y 3 son correctas", 'G', '0');
 INSERT INTO preguntas (pregunta, respuesta_correcta, respuesta_incorrecta_1,respuesta_incorrecta_2, respuesta_incorrecta_3,categoria, pregunta_tipo)VALUES("¿Donde esta falete?", "falleta", "falleta2", "falleta3", "falleta4", 'G', '1');
 INSERT INTO preguntas (pregunta, respuesta_correcta, respuesta_incorrecta_1,respuesta_incorrecta_2, respuesta_incorrecta_3,categoria, pregunta_tipo)VALUES("reyagua", "El rey del agua", "Una gota", "Un zapato", "Una cerilla", 'G', '2');
 --resto de preguntas

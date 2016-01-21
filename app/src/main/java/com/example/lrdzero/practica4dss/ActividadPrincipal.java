@@ -64,7 +64,7 @@ public class ActividadPrincipal extends Activity implements View.OnClickListener
         cuestiones.moveToFirst();
         for(int i=0;i<cuestiones.getCount();i++,cuestiones.moveToNext()) {
 
-            Log.e("SDFA", "ASDF");
+
             String[] cnt = new String[3];
             for (int j = 0; j < 3; j++) {
                 cnt[j] = cuestiones.getString(cuestiones.getColumnIndex("respuesta_incorrecta_" + (j + 1)));
