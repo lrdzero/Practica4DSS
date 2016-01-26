@@ -20,6 +20,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Tus Juegos completados"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.03"
+            android:textSize="@dimen/text_size"
+            android:textColor="#3ed030" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:textSize="@dimen/text_size"
             android:id="@+id/txto1"
