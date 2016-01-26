@@ -37,7 +37,8 @@
             android:textSize="@dimen/text_size"
             android:text="Large Text"
             android:id="@+id/despete"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#63dd3b" />
 
         <TextView
             android:layout_width="@dimen/texto_a"
@@ -46,7 +47,8 @@
             android:textSize="@dimen/text_size"
             android:text="Large Text"
             android:id="@+id/despe1"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#63dd3b" />
 
         <TextView
             android:layout_width="@dimen/texto_a"
@@ -54,8 +56,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/text_size"
             android:text="Large Text"
+
             android:id="@+id/despe3"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#63dd3b" />
 
         <ImageView
             android:layout_width="@dimen/yoda_w"
