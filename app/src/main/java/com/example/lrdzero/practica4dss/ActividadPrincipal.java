@@ -232,66 +232,7 @@ public void onClick(View v){
         }).setNegativeButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                index=0;
-                mUtilidad.resetearPuntuacion();
-                ot1.setText("");
-                ot2.setText("");
-                ot3.setText("");
-                ot4.setText("");
-                ot1.setBackgroundResource(android.R.drawable.btn_default);
-                ot2.setBackgroundResource(android.R.drawable.btn_default);
-                ot3.setBackgroundResource(android.R.drawable.btn_default);
-                ot4.setBackgroundResource(android.R.drawable.btn_default);
-                texto.setBackgroundResource(android.R.drawable.btn_default);
-                if(preguntas.get(index).getTipo().equals("1")){
-                    String imageName = preguntas.get(index).getRespuesta();
-
-                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-                    texto.setText(preguntas.get(index).getPregunta());
-
-                    ot1.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
-                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
-                    imageName = incorrectas[0];
-                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-                    ot2.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
-
-                    imageName = incorrectas[1];
-                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-                    ot3.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
-
-                    imageName = incorrectas[2];
-                    resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-                    ot4.setBackground(resizeImage(ActividadPrincipal.this, resID, 300, 300));
-
-
-
-                }
-                else if (preguntas.get(index).getTipo().equals("2")){
-                    String imageName = preguntas.get(index).getPregunta();
-                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-                    texto.setBackground(resizeImage(ActividadPrincipal.this,resID,100,100));
-                    texto.setText(" ¿Qué es esto? ");
-                    ot1.setText(preguntas.get(index).getRespuesta());
-                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
-                    ot2.setText(incorrectas[0]);
-                    ot3.setText(incorrectas[1]);
-                    ot4.setText(incorrectas[2]);
-
-                }
-                else {
-
-                    texto.setText(preguntas.get(index).getPregunta());
-                    ot1.setText(preguntas.get(index).getRespuesta());
-                    String [] incorrectas=preguntas.get(index).getRespuestasErroneas();
-                    ot2.setText(incorrectas[0]);
-                    ot3.setText(incorrectas[1]);
-                    ot4.setText(incorrectas[2]);
-                }
-                ot1.setEnabled(true);
-                ot2.setEnabled(true);
-                ot3.setEnabled(true);
-                ot4.setEnabled(true);
-                //puntuacion resetea
+                finish();
                 dialog.cancel();
             }
         });

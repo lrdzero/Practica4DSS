@@ -8,7 +8,7 @@
     <dimen name="texto_b">60dp</dimen>
     <dimen name="boton_a">200dp</dimen>
     <dimen name="boton_b">50dp</dimen>
-    <dimen name="text_size">20dp</dimen>
+    <dimen name="text_size">17dp</dimen>
     <dimen name="wiev_a">300dp</dimen>
     <dimen name="wiev_b">300dp</dimen>
 
