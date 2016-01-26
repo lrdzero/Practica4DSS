@@ -12,7 +12,7 @@
     <string name="stats" >Resultados</string>
     <string name="settings" >Otros juegos</string>
     <string name="welcome1" >Hola, \n BADASS-YODA soy, si probar tu conocimiento tu quieres completar... ¿Mechero, dónde...? ah!, completar mi reto debes... &#8230; </string>
-    <string name="welcome2">Te atreves?</string>
+    <string name="welcome2">¿Te atreves?</string>
     <string name="tip" color="#F62217" textSize="33dp">Entonces, &#8230; esta envenenada el agua del embalse? \n \n No, porque el agua no esta estancada, esta en continua renovacion, le esta entrando y saliendo agua permanentemente .</string>
     <string name="title_activity_presentacion">Presentacion</string>
     <string name="title_activity_resultados">Resultados</string>

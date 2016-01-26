@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="yoda_w">300dp</dimen>
+    <dimen name="yoda_h">300dp</dimen>
+    <dimen name="texto_a">500dp</dimen>
+    <dimen name="texto_b">60dp</dimen>
+    <dimen name="boton_a">400dp</dimen>
+    <dimen name="boton_b">100dp</dimen>
+    <dimen name="text_size">40dp</dimen>
+    <dimen name="wiev_a">600dp</dimen>
+    <dimen name="wiev_b">600dp</dimen>
+</resources>

@@ -17,45 +17,46 @@
         android:background="@drawable/background_juego">
 
         <ImageView
-            android:layout_width="170dp"
-            android:layout_height="145dp"
+            android:layout_width="@dimen/yoda_w"
+            android:layout_height="@dimen/yoda_h"
             android:id="@+id/imageView"
             android:src="@drawable/arenusca"
             android:layout_gravity="center_horizontal" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/texto_a"
+            android:layout_height="@dimen/texto_b"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
+            android:textSize="@dimen/text_size"
             android:id="@+id/pregunta_inicial"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.55" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/boton_a"
+            android:layout_height="@dimen/boton_b"
             android:text="New Button"
             android:id="@+id/opcion_1"
             android:layout_gravity="center_horizontal" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/boton_a"
+            android:layout_height="@dimen/boton_b"
             android:text="New Button"
             android:id="@+id/opcion_2"
             android:layout_gravity="center_horizontal" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/boton_a"
+            android:layout_height="@dimen/boton_b"
             android:text="New Button"
             android:id="@+id/opcion_3"
             android:layout_gravity="center_horizontal" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/boton_a"
+            android:layout_height="@dimen/boton_b"
             android:text="New Button"
             android:id="@+id/opcion_4"
             android:layout_gravity="center_horizontal" />

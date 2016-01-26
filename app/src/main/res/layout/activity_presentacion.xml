@@ -17,15 +17,23 @@
         android:background="@drawable/background_juego">
 
         <Button
-            android:layout_width="234dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/boton_a"
+            android:layout_height="@dimen/boton_b"
             android:text="Ir A"
             android:id="@+id/pagina"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
             android:background="@drawable/games"
             android:textColor="#511dab"
-            android:textSize="40dp" />
+            android:textSize="@dimen/text_size" />
+
+        <fragment
+
+            android:layout_width="@dimen/wiev_a"
+            android:layout_height="@dimen/wiev_b"
+            android:name="android.webkit.WebViewFragment"
+            android:id="@+id/fragment"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.72" />
 
     </LinearLayout>
 </RelativeLayout>
