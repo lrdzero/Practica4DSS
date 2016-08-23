@@ -10,5 +10,3 @@ Los objetivos a desarrollar son:
 - Adaptación de la aplicación a diversos dispositivos.
 - Uso de imagenes y estilos mediante especificación XML.
 
-
-read
