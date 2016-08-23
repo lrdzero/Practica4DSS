@@ -9,3 +9,6 @@ Los objetivos a desarrollar son:
 - Implementación de BD constante interna.
 - Adaptación de la aplicación a diversos dispositivos.
 - Uso de imagenes y estilos mediante especificación XML.
+
+
+read
