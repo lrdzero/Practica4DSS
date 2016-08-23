@@ -13,23 +13,23 @@
     - android-sdk-license-.+
     - google-gdk-license-.+
 before_script: 
-  - "android update sdk --no-ui --filter build-tools-24.0.1,android-24,extra-android-m2repository"
-  - "echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a"
-  - "emulator -avd test -no-skin -no-audio -no-window &"
+  - android update sdk --no-ui --filter build-tools-24.0.1,android-24,extra-android-m2repository
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
-  - "adb shell input keyevent 82 &"
+  - adb shell input keyevent 82 &
 before_cache: 
-  - "rm -f $HOME/.gradle/caches/modules-2/modules-2.lock"
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 before_install: 
-  - "chmod +x gradlew"
+  - chmod +x gradlew
 cache: 
   directories: 
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 env: 
   matrix: 
-    - "ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a"
+    - ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
 jdk: oraclejdk8
 language: android
 script: 
-  - "./gradlew build connectedCheck --stacktrace"
+  - ./gradlew build connectedCheck --stacktrace
