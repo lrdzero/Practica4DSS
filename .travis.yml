@@ -10,10 +10,10 @@ android:
   - extra-android-m2repository
   - addon-google_apis-google-23
 
-  before_install:
+before_install:
   - chmod +x gradlew
   
-  licenses:
+licenses:
   - 'android-sdk-license-.+'
 env:
   global:
