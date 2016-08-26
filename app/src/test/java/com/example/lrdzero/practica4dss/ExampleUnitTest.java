@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2).hasText("Sale 4");
-        assertEquals(5, 3+2).hasText("Sale 5");
+        assertEquals("Sale 4",4, 2 + 2);
+        assertEquals("Sale 5",5, 3+2);
     }
 }
